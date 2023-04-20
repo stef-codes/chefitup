@@ -147,14 +147,14 @@ const Home: NextPage = () => {
                   Your Recipe
                 </h2>
               </div>
-              <div className="h-screen flex flex-col justify-center items-center">
+              <div className="flex flex-col justify-center items-center">
               {(() => {
                 const generatedRecipe = generatedRecipes
                   .substring(generatedRecipes.indexOf("-1"))
                   .split("Dish:")[1];
                 return (
                   <div
-                    className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-copy border h-full overflow-y-auto"
+                    className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-copy border overflow-y-auto"
                     onClick={() => {
                       navigator.clipboard.writeText(generatedRecipe);
                       toast("Recipe copied to clipboard", {
