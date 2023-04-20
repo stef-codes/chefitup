@@ -157,17 +157,32 @@ const Home: NextPage = () => {
                   // .substring(generatedRecipes.indexOf("-1"))
                   // .split("Dish:")[1];
                 return (
-                  <div
+                  <><div
                     className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-copy border overflow-y-auto"
                     onClick={() => {
                       navigator.clipboard.writeText(generatedRecipe);
                       toast("Recipe copied to clipboard", {
                         icon: "✂️",
                       });
-                    }}
+                    } }
                   >
                     <p>{generatedRecipe}</p>
-                  </div>
+                  </div><div className="btnDiv">
+                      <button
+                        id="downloadBtn"
+                        onClick={() => {
+                          const element = document.createElement("a");
+                          const file = new Blob([generatedRecipe], { type: 'text/plain' });
+                          element.href = URL.createObjectURL(file);
+                          element.download = "recipe.txt";
+                          document.body.appendChild(element); // Required for this to work in FireFox
+                          element.click();
+                          toast("Recipe downloaded", { icon: "👨‍🍳" });
+                        } }
+                      >
+                        Download
+                      </button>
+                    </div></>
                 );
               })()}
             </div>
