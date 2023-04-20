@@ -80,7 +80,7 @@ const Home: NextPage = () => {
           Find Your Next Vegan Recipe
         </h1>
         <div className="max-w-xl w-full">
-          <div className="flex mt-10 items-center space-x-3">
+          {/* <div className="flex mt-10 items-center space-x-3">
             <Image
               src="/1-black.png"
               width={30}
@@ -104,9 +104,9 @@ const Home: NextPage = () => {
             placeholder={
               "e.g. Senior Developer Advocate @vercel. Tweeting about web development, AI, and React / Next.js. Writing nutlope.substack.com."
             }
-          />
-          <div className="flex mb-5 items-center space-x-3">
-            <Image src="/2-black.png" width={30} height={30} alt="1 icon" />
+          /> */}
+          <div className="flex mb-5 mt-10  items-center space-x-3">
+            <Image src="/1-black.png" width={30} height={30} alt="1 icon" />
             <p className="text-left font-medium">Select your mood.</p>
           </div>
           <div className="block">
@@ -147,17 +147,17 @@ const Home: NextPage = () => {
                   Your Recipe
                 </h2>
               </div>
-              <div className="flex flex-col items-center justify-center max-w-xl mx-auto h-96 overflow-y-auto">
+              <div className="h-screen flex flex-col justify-center items-center bg-gray-100">
               {(() => {
                 const generatedRecipe = generatedRecipes
                   .substring(generatedRecipes.indexOf("-1"))
                   .split("Dish:")[1];
                 return (
                   <div
-                    className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-copy border"
+                    className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-copy border h-full overflow-y-auto"
                     onClick={() => {
                       navigator.clipboard.writeText(generatedRecipe);
-                      toast("Bio copied to clipboard", {
+                      toast("Recipe copied to clipboard", {
                         icon: "✂️",
                       });
                     }}
