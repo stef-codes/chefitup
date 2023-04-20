@@ -147,7 +147,7 @@ const Home: NextPage = () => {
                   Your Recipe
                 </h2>
               </div>
-              <div className="h-screen flex flex-col justify-center items-center bg-gray-100">
+              <div className="h-screen flex flex-col justify-center items-center">
               {(() => {
                 const generatedRecipe = generatedRecipes
                   .substring(generatedRecipes.indexOf("-1"))
