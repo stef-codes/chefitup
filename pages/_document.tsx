@@ -13,14 +13,14 @@ class MyDocument extends Document {
           <meta property="og:site_name" content="chefitup.app" />
           <meta
             property="og:description"
-            content="Generate your next Twitter bio in seconds."
+            content="Get your next vegan recipe."
           />
-          <meta property="og:title" content="Twitter Bio Generator" />
+          <meta property="og:title" content="Vegan Recipe Generator" />
           <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:title" content="Twitter Bio Generator" />
+          <meta name="twitter:title" content="Vegan Recipe Generator" />
           <meta
             name="twitter:description"
-            content="Generate your next Twitter bio in seconds."
+            content="Generate your next vegan recipe in seconds."
           />
           {/* <meta
             property="og:image"
