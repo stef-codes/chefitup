@@ -15,8 +15,8 @@ export default function Header() {
         <h1 className="sm:text-4xl text-2xl font-bold ml-2 tracking-tight">
           Chef It Up!
         </h1>
-      {/* </Link>
-      <a
+       </Link>
+      {/*<a
         href="https://vercel.com/templates/next.js/twitter-bio"
         target="_blank"
         rel="noreferrer"
