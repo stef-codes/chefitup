@@ -48,8 +48,8 @@ const Home: NextPage = () => {
     });
 
     if (!response.ok) {
-      throw new Error(response.statusText);
-    }
+      throw new Error(`Request failed with status code ${response.status}: ${response.statusText}`);
+    }    
 
     // This data is a ReadableStream
     const data = response.body;
@@ -160,7 +160,7 @@ const Home: NextPage = () => {
                   <><div
                     className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-copy border overflow-y-auto"
                     onClick={() => {
-                      navigator.clipboard.writeText(generatedRecipe);
+                      navigator.clipboard.writeText(generatedRecipe.toString());
                       toast("Recipe copied to clipboard", {
                         icon: "✂️",
                       });
@@ -172,7 +172,7 @@ const Home: NextPage = () => {
                         id="downloadBtn"
                         onClick={() => {
                           const element = document.createElement("a");
-                          const file = new Blob([generatedRecipe], { type: 'text/plain' });
+                          const file = new Blob([generatedRecipe.toString()], { type: 'text/plain' });
                           element.href = URL.createObjectURL(file);
                           element.download = "recipe.txt";
                           document.body.appendChild(element); // Required for this to work in FireFox
