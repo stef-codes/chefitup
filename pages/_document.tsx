@@ -8,9 +8,9 @@ class MyDocument extends Document {
           <link rel="icon" href="/favicon.ico" />
           <meta
             name="description"
-            content="Generate a vegan  bio in seconds."
+            content="Generate a vegan recipe in seconds."
           />
-          <meta property="og:site_name" content="twitterbio.com" />
+          <meta property="og:site_name" content="chefitup.app" />
           <meta
             property="og:description"
             content="Generate your next Twitter bio in seconds."
@@ -22,14 +22,14 @@ class MyDocument extends Document {
             name="twitter:description"
             content="Generate your next Twitter bio in seconds."
           />
-          <meta
+          {/* <meta
             property="og:image"
-            content="https://twitterbio.com/og-image.png"
+            content="https://chefitup.app.com/og-image.png"
           />
           <meta
             name="twitter:image"
-            content="https://twitterbio.com/og-image.png"
-          />
+            content="https://chefitup.app.com/og-image.png"
+          /> */}
         </Head>
         <body>
           <Main />
