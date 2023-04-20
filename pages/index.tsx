@@ -13,7 +13,7 @@ const Home: NextPage = () => {
   const [loading, setLoading] = useState(false);
   const [bio, setBio] = useState("");
   const [vibe, setVibe] = useState<VibeType>("Professional");
-  const [generatedBios, setGeneratedBios] = useState<String>("");
+  const [generatedRecipes, setgeneratedRecipes] = useState<String>("");
 
   const bioRef = useRef<null | HTMLDivElement>(null);
 
@@ -31,7 +31,7 @@ const Home: NextPage = () => {
 
   const generateBio = async (e: any) => {
     e.preventDefault();
-    setGeneratedBios("");
+    setgeneratedRecipes("");
     setLoading(true);
     const response = await fetch("/api/generate", {
       method: "POST",
@@ -61,7 +61,7 @@ const Home: NextPage = () => {
       const { value, done: doneReading } = await reader.read();
       done = doneReading;
       const chunkValue = decoder.decode(value);
-      setGeneratedBios((prev) => prev + chunkValue);
+      setgeneratedRecipes((prev) => prev + chunkValue);
     }
     scrollToBios();
     setLoading(false);
@@ -118,7 +118,7 @@ const Home: NextPage = () => {
               className="bg-black rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-black/80 w-full"
               onClick={(e) => generateBio(e)}
             >
-              Generate your bio &rarr;
+              Let's cook! &rarr;
             </button>
           )}
           {loading && (
@@ -135,39 +135,39 @@ const Home: NextPage = () => {
           reverseOrder={false}
           toastOptions={{ duration: 2000 }}
         />
-        <hr className="h-px bg-gray-700 border-1 dark:bg-gray-700" />
+        {/* <hr className="bg-gray-700 border-1 dark:bg-gray-700" /> */}
         <div className="space-y-10 my-10">
-          {generatedBios && (
+          {generatedRecipes && (
             <>
               <div>
                 <h2
                   className="sm:text-4xl text-3xl font-bold text-slate-900 mx-auto"
                   ref={bioRef}
                 >
-                  Your generated bios
+                  Your Recipe
                 </h2>
               </div>
-              <div className="space-y-8 flex flex-col items-center justify-center max-w-xl mx-auto">
-                {generatedBios
-                  .substring(generatedBios.indexOf("-1"))
-                  .split("Dish:")
-                  .map((generatedBio) => {
-                    return (
-                      <div
-                        className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-copy border"
-                        onClick={() => {
-                          navigator.clipboard.writeText(generatedBio);
-                          toast("Bio copied to clipboard", {
-                            icon: "✂️",
-                          });
-                        }}
-                        key={generatedBio}
-                      >
-                        <p>{generatedBio}</p>
-                      </div>
-                    );
-                  })}
-              </div>
+              <div className="flex flex-col items-center justify-center max-w-xl mx-auto h-96 overflow-y-auto">
+              {(() => {
+                const generatedRecipe = generatedRecipes
+                  .substring(generatedRecipes.indexOf("-1"))
+                  .split("Dish:")[1];
+                return (
+                  <div
+                    className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-copy border"
+                    onClick={() => {
+                      navigator.clipboard.writeText(generatedRecipe);
+                      toast("Bio copied to clipboard", {
+                        icon: "✂️",
+                      });
+                    }}
+                  >
+                    <p>{generatedRecipe}</p>
+                  </div>
+                );
+              })()}
+            </div>
+
             </>
           )}
         </div>
