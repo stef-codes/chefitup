@@ -23,9 +23,13 @@ const Home: NextPage = () => {
     }
   };
 
-  const prompt = `Create a ${vibe} detailed step-by-step vegan recipe by a chef and clearly labeled "Dish:"". ${
+  const prompt = `Create a ${vibe} vegan recipe with detailed step-by-step instructions by a chef". ${
     vibe === "Sweet"
       ? "Make sure it is a recipe that can be enjoyed anytime of day."
+      : vibe === "Quick"
+      ? "Make sure it is a recipe that is easy to cook."
+      : vibe === "Fancy"
+      ? "Make sure it is a recipe that would be prepared at a restaurant"
       : null
   }`;
 
@@ -147,11 +151,11 @@ const Home: NextPage = () => {
                   Your Recipe
                 </h2>
               </div>
-              <div className="flex flex-col justify-center items-center">
+              <div className="mx-auto flex h-full w-[300px] flex-col justify-center space-y-6 sm:w-[600px]">
               {(() => {
                 const generatedRecipe = generatedRecipes
-                  .substring(generatedRecipes.indexOf("-1"))
-                  .split("Dish:")[1];
+                  // .substring(generatedRecipes.indexOf("-1"))
+                  // .split("Dish:")[1];
                 return (
                   <div
                     className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-copy border overflow-y-auto"
