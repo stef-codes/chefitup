@@ -12,7 +12,7 @@ import LoadingDots from "../components/LoadingDots";
 const Home: NextPage = () => {
   const [loading, setLoading] = useState(false);
   const [bio, setBio] = useState("");
-  const [vibe, setVibe] = useState<VibeType>("Professional");
+  const [vibe, setVibe] = useState<VibeType>("Fancy");
   const [generatedRecipes, setgeneratedRecipes] = useState<String>("");
 
   const bioRef = useRef<null | HTMLDivElement>(null);
@@ -23,9 +23,9 @@ const Home: NextPage = () => {
     }
   };
 
-  const prompt = `Create 2 ${vibe} detailed step-by-step recipes by a professional chef and clearly labeled "Dish:"". ${
-    vibe === "Funny"
-      ? "Make sure there is a joke in there and it's a little ridiculous."
+  const prompt = `Create a ${vibe} detailed step-by-step vegan recipe by a chef and clearly labeled "Dish:"". ${
+    vibe === "Sweet"
+      ? "Make sure it is a recipe that can be enjoyed anytime of day."
       : null
   }`;
 
@@ -70,14 +70,14 @@ const Home: NextPage = () => {
   return (
     <div className="flex max-w-5xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
       <Head>
-        <title>Twitter Bio Generator</title>
+        <title>Vegan Recipe Generator</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Header />
       <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 mt-12 sm:mt-20">
         <h1 className="sm:text-6xl text-4xl max-w-[708px] font-bold text-slate-900">
-          Generate your next Twitter bio using chatGPT
+          Find Your Next Vegan Recipe
         </h1>
         <div className="max-w-xl w-full">
           <div className="flex mt-10 items-center space-x-3">
@@ -107,7 +107,7 @@ const Home: NextPage = () => {
           />
           <div className="flex mb-5 items-center space-x-3">
             <Image src="/2-black.png" width={30} height={30} alt="1 icon" />
-            <p className="text-left font-medium">Select your vibe.</p>
+            <p className="text-left font-medium">Select your mood.</p>
           </div>
           <div className="block">
             <DropDown vibe={vibe} setVibe={(newVibe) => setVibe(newVibe)} />
