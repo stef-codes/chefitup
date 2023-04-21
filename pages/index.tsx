@@ -151,10 +151,11 @@ const Home: NextPage = () => {
                   Your Recipe
                 </h2>
               </div>
-              <div className="mx-auto flex h-full w-[300px] flex-col justify-center space-y-6 sm:w-[600px]">
+              <pre style={{whiteSpace:"pre-wrap"}} className="mx-auto flex h-full w-[300px] flex-col justify-center space-y-6 sm:w-[600px]">
+
               {(() => {
                 const generatedRecipe = generatedRecipes
-                  // .substring(generatedRecipes.indexOf("-1"))
+                  .substring(generatedRecipes.indexOf("-1"))
                   // .split("Dish:")[1];
                 return (
                 <div>
@@ -188,7 +189,7 @@ const Home: NextPage = () => {
                 </div>
                 );
               })()}
-            </div>
+            </pre>
 
             </>
           )}
