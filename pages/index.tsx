@@ -155,7 +155,7 @@ const Home: NextPage = () => {
               </div>
               <div className="mx-auto flex h-full w-[300px] flex-col justify-center space-y-6 sm:w-[600px]">
                 <div className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-copy border overflow-y-auto">
-                  <pre style={{whiteSpace:"pre-wrap"}}>{generatedRecipes.substring(generatedRecipes.indexOf("-1"))}</pre>
+                  <pre style={{ whiteSpace: "pre-wrap" }}>{generatedRecipes}</pre>
                 </div>
                 <div className="btnDiv">
                   <button
