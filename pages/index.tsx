@@ -8,11 +8,12 @@ import Footer from "../components/Footer";
 import Github from "../components/GitHub";
 import Header from "../components/Header";
 import LoadingDots from "../components/LoadingDots";
+import jsPDF from "jspdf";
 
 const Home: NextPage = () => {
   const [loading, setLoading] = useState(false);
   const [bio, setBio] = useState("");
-  const [vibe, setVibe] = useState<VibeType>("Fancy");
+  const [vibe, setVibe] = useState<VibeType>("Indian");
   const [generatedRecipes, setgeneratedRecipes] = useState<String>("");
 
   const bioRef = useRef<null | HTMLDivElement>(null);
@@ -23,12 +24,13 @@ const Home: NextPage = () => {
     }
   };
 
-  const prompt = `Create a ${vibe} vegan recipe with detailed step-by-step instructions by a chef". ${
-    vibe === "Sweet"
+  const prompt = `Create a ${vibe} vegan ${bio} recipe with detailed step-by-step instructions by a chef and include the name of the dish. 
+  Don't include the words "Recipe" or "Dish", only the name of the dish". ${
+    vibe === "Southern"
       ? "Make sure it is a recipe that can be enjoyed anytime of day."
-      : vibe === "Quick"
+      : vibe === "Spanish"
       ? "Make sure it is a recipe that is easy to cook."
-      : vibe === "Fancy"
+      : vibe === "Indian"
       ? "Make sure it is a recipe that would be prepared at a restaurant"
       : null
   }`;
@@ -84,7 +86,7 @@ const Home: NextPage = () => {
           Find Your Next Vegan Recipe
         </h1>
         <div className="max-w-xl w-full">
-          {/* <div className="flex mt-10 items-center space-x-3">
+          <div className="flex mt-10 items-center space-x-3">
             <Image
               src="/1-black.png"
               width={30}
@@ -93,9 +95,9 @@ const Home: NextPage = () => {
               className="mb-5 sm:mb-0"
             />
             <p className="text-left font-medium">
-              Copy your current bio{" "}
+              What do you want to eat? {" "}
               <span className="text-slate-500">
-                (or write a few sentences about yourself)
+                (seriously, anything you want)
               </span>
               .
             </p>
@@ -103,15 +105,15 @@ const Home: NextPage = () => {
           <textarea
             value={bio}
             onChange={(e) => setBio(e.target.value)}
-            rows={4}
+            rows={1}
             className="w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black my-5"
             placeholder={
-              "e.g. Senior Developer Advocate @vercel. Tweeting about web development, AI, and React / Next.js. Writing nutlope.substack.com."
+              "Mac and Cheese "
             }
-          /> */}
+          />
           <div className="flex mb-5 mt-10  items-center space-x-3">
-            <Image src="/1-black.png" width={30} height={30} alt="1 icon" />
-            <p className="text-left font-medium">Select your mood.</p>
+            <Image src="/2-black.png" width={30} height={30} alt="1 icon" />
+            <p className="text-left font-medium">Select your flavor.</p>
           </div>
           <div className="block">
             <DropDown vibe={vibe} setVibe={(newVibe) => setVibe(newVibe)} />
@@ -151,46 +153,24 @@ const Home: NextPage = () => {
                   Your Recipe
                 </h2>
               </div>
-              <pre style={{whiteSpace:"pre-wrap"}} className="mx-auto flex h-full w-[300px] flex-col justify-center space-y-6 sm:w-[600px]">
-
-              {(() => {
-                const generatedRecipe = generatedRecipes
-                  .substring(generatedRecipes.indexOf("-1"))
-                  // .split("Dish:")[1];
-                return (
-                <div>
-                  <div
-                    className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-copy border overflow-y-auto"
+              <div className="mx-auto flex h-full w-[300px] flex-col justify-center space-y-6 sm:w-[600px]">
+                <div className="bg-white rounded-xl shadow-md p-4 hover:bg-gray-100 transition cursor-copy border overflow-y-auto">
+                  <pre style={{whiteSpace:"pre-wrap"}}>{generatedRecipes.substring(generatedRecipes.indexOf("-1"))}</pre>
+                </div>
+                <div className="btnDiv">
+                  <button
+                    id="downloadBtn"
                     onClick={() => {
-                      navigator.clipboard.writeText(generatedRecipe.toString());
-                      toast("Recipe copied to clipboard", {
-                        icon: "✂️",
-                      });
+                      const doc = new jsPDF();
+                      doc.text(generatedRecipes.substring(generatedRecipes.indexOf("-1")), 10, 10);
+                      doc.save("recipe.pdf");
+                      toast("Recipe downloaded", { icon: "👨‍🍳" });
                     }}
                   >
-                    <p>{generatedRecipe}</p>
-                  </div>
-                  <div className="btnDiv">
-                    <button
-                      id="downloadBtn"
-                      onClick={() => {
-                        const element = document.createElement("a");
-                        const file = new Blob([generatedRecipe.toString()], { type: 'text/plain' });
-                        element.href = URL.createObjectURL(file);
-                        element.download = "recipe.txt";
-                        document.body.appendChild(element); // Required for this to work in FireFox
-                        element.click();
-                        toast("Recipe downloaded", { icon: "👨‍🍳" });
-                      }}
-                    >
-                      Download
-                    </button>
-                  </div>
+                    Download
+                  </button>
                 </div>
-                );
-              })()}
-            </pre>
-
+              </div>
             </>
           )}
         </div>
