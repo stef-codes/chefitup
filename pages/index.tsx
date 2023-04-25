@@ -162,7 +162,7 @@ const Home: NextPage = () => {
                     id="downloadBtn"
                     onClick={() => {
                       const doc = new jsPDF();
-                      doc.text(generatedRecipes.substring(generatedRecipes.indexOf("-1")), 10, 10);
+                      doc.text(generatedRecipes.toString(), 10, 10);
                       doc.save("recipe.pdf");
                       toast("Recipe downloaded", { icon: "👨‍🍳" });
                     }}
