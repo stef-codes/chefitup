@@ -120,12 +120,23 @@ const Home: NextPage = () => {
           </div>
 
           {!loading && (
+            <div className="flex flex-col md:flex-row gap-4">
             <button
               className="bg-black rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-black/80 w-full"
               onClick={(e) => generateBio(e)}
             >
               Let's cook! &rarr;
             </button>
+            {/* <button
+              id="surpriseMeBtn"
+              className="bg-yellow rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-black/80 w-full"
+              // onClick={handleSurpriseMeClick}
+            >
+              Surprise Me! 
+            </button> */}
+          </div>
+          
+            
           )}
           {loading && (
             <button
