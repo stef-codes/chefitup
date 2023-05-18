@@ -26,7 +26,7 @@ const Home: NextPage = () => {
 
 //   meal plan prompt
 // Give me a meal plan for 5 days with my goal of losing weight. And I'm allergic to nuts. Include two recipes and a grocery list.
-const prompt = `Create a meal plan for 5 days with my goal of ${vibe}. Here are my dietary restrictions ${bio}. Include two recipes and a grocery list." 
+const prompt = `Create a meal plan for 5 days with my goal of ${vibe}. Here are my dietary restrictions ${bio}. Include a grocery list. Don't exceed $70 in grocery costs for the week." 
 ${vibe === "Weight Loss"
     ? "Make sure the meals don't exceed 1400 calories per day."
     : vibe === "Weight Gain" // Weight gain
@@ -124,7 +124,7 @@ ${vibe === "Weight Loss"
             rows={1}
             className="w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black my-5"
             placeholder={
-              "Mac and Cheese "
+              "nut allergy"
             }
           />
           <div className="flex mb-5 mt-10  items-center space-x-3">
