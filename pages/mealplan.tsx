@@ -24,16 +24,30 @@ const Home: NextPage = () => {
     }
   };
 
-  const prompt = `Create a ${vibe} vegan ${bio} recipe with detailed step-by-step instructions by a chef and include the name of the dish. 
-  Don't include the words "Recipe" or "Dish", only the name of the dish". ${
-    vibe === "Southern"
-      ? "Make sure it is a recipe that can be enjoyed anytime of day."
-      : vibe === "Spanish"
-      ? "Make sure it is a recipe that is easy to cook."
-      : vibe === "Indian"
-      ? "Make sure it is a recipe that would be prepared at a restaurant"
-      : null
-  }`;
+//   meal plan prompt
+// Give me a meal plan for 5 days with my goal of losing weight. And I'm allergic to nuts. Include two recipes and a grocery list.
+const prompt = `Create a meal plan for 5 days with my goal of ${vibe}. Here are my dietary restrictions ${bio}. Include two recipes and a grocery list." 
+${vibe === "Southern"
+    ? "Make sure it is a recipe that can be enjoyed anytime of day."
+    : vibe === "Spanish"
+    ? "Make sure it is a recipe that is easy to cook."
+    : vibe === "Indian"
+    ? "Make sure it is a recipe that would be prepared at a restaurant"
+    : null
+}`;
+
+
+// old prompt
+//   const prompt = `Create a ${vibe} vegan ${bio} recipe with detailed step-by-step instructions by a chef and include the name of the dish. 
+//   Don't include the words "Recipe" or "Dish", only the name of the dish". ${
+//     vibe === "Southern"
+//       ? "Make sure it is a recipe that can be enjoyed anytime of day."
+//       : vibe === "Spanish"
+//       ? "Make sure it is a recipe that is easy to cook."
+//       : vibe === "Indian"
+//       ? "Make sure it is a recipe that would be prepared at a restaurant"
+//       : null
+//   }`;
 
   const generateBio = async (e: any) => {
     e.preventDefault();
