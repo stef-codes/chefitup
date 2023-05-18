@@ -13,7 +13,7 @@ import jsPDF from "jspdf";
 const Home: NextPage = () => {
   const [loading, setLoading] = useState(false);
   const [bio, setBio] = useState("");
-  const [vibe, setVibe] = useState<VibeType>("Indian");
+  const [vibe, setVibe] = useState<VibeType>("Maintain Weight");
   const [generatedRecipes, setgeneratedRecipes] = useState<String>("");
 
   const bioRef = useRef<null | HTMLDivElement>(null);
@@ -26,11 +26,11 @@ const Home: NextPage = () => {
 
   const prompt = `Create a ${vibe} vegan ${bio} recipe with detailed step-by-step instructions by a chef and include the name of the dish. 
   Don't include the words "Recipe" or "Dish", only the name of the dish". ${
-    vibe === "Southern"
+    vibe === "Weight Loss"
       ? "Make sure it is a recipe that can be enjoyed anytime of day."
-      : vibe === "Spanish"
+      : vibe === "Weight Gain"
       ? "Make sure it is a recipe that is easy to cook."
-      : vibe === "Indian"
+      : vibe === "Maintain Weight"
       ? "Make sure it is a recipe that would be prepared at a restaurant"
       : null
   }`;
@@ -108,12 +108,12 @@ const Home: NextPage = () => {
             rows={1}
             className="w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black my-5"
             placeholder={
-              "Mac and Cheese "
+              "nut allergy "
             }
           />
           <div className="flex mb-5 mt-10  items-center space-x-3">
             <Image src="/2-black.png" width={30} height={30} alt="1 icon" />
-            <p className="text-left font-medium">Select your flavor.</p>
+            <p className="text-left font-medium">Select your goal.</p>
           </div>
           <div className="block">
             <DropDown vibe={vibe} setVibe={(newVibe) => setVibe(newVibe)} />
