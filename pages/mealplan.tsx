@@ -13,7 +13,7 @@ import jsPDF from "jspdf";
 const Home: NextPage = () => {
   const [loading, setLoading] = useState(false);
   const [bio, setBio] = useState("");
-  const [vibe, setVibe] = useState<VibeType>("Indian");
+  const [vibe, setVibe] = useState<VibeType>("Maintain Weight");
   const [generatedRecipes, setgeneratedRecipes] = useState<String>("");
 
   const bioRef = useRef<null | HTMLDivElement>(null);
@@ -27,24 +27,26 @@ const Home: NextPage = () => {
 //   meal plan prompt
 // Give me a meal plan for 5 days with my goal of losing weight. And I'm allergic to nuts. Include two recipes and a grocery list.
 const prompt = `Create a meal plan for 5 days with my goal of ${vibe}. Here are my dietary restrictions ${bio}. Include two recipes and a grocery list." 
-${vibe === "Southern"
-    ? "Make sure it is a recipe that can be enjoyed anytime of day."
-    : vibe === "Spanish"
-    ? "Make sure it is a recipe that is easy to cook."
-    : vibe === "Indian"
-    ? "Make sure it is a recipe that would be prepared at a restaurant"
+${vibe === "Weight Loss"
+    ? "Make sure the meals don't exceed 1400 calories per day."
+    : vibe === "Weight Gain" // Weight gain
+    ? "Make sure the meals are high in protein."
+    : vibe === "Maintain Weight" // Maintain weight
+    ? "Make sure the meals are around exceed 2000 calories per day."
     : null
 }`;
+// prompt v2 with recipes and grocery list
+//const prompt = `Create a meal plan for 5 days with my goal of ${vibe}. Here are my dietary restrictions ${bio}. Include two recipes and a grocery list." 
 
 
 // old prompt
 //   const prompt = `Create a ${vibe} vegan ${bio} recipe with detailed step-by-step instructions by a chef and include the name of the dish. 
 //   Don't include the words "Recipe" or "Dish", only the name of the dish". ${
-//     vibe === "Southern"
+//     vibe === "Weight Loss"
 //       ? "Make sure it is a recipe that can be enjoyed anytime of day."
-//       : vibe === "Spanish"
+//       : vibe === "Weight Gain"
 //       ? "Make sure it is a recipe that is easy to cook."
-//       : vibe === "Indian"
+//       : vibe === "Maintain Weight"
 //       ? "Make sure it is a recipe that would be prepared at a restaurant"
 //       : null
 //   }`;
@@ -90,14 +92,14 @@ ${vibe === "Southern"
   return (
     <div className="flex max-w-5xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
       <Head>
-        <title>Vegan Recipe Generator</title>
+        <title>Meal Plan Generator</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Header />
       <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 mt-12 sm:mt-20">
         <h1 className="sm:text-6xl text-4xl max-w-[708px] font-bold text-slate-900">
-          Find Your Next Vegan Recipe
+          Your Customized Meal Plan
         </h1>
         <div className="max-w-xl w-full">
           <div className="flex mt-10 items-center space-x-3">
@@ -109,9 +111,9 @@ ${vibe === "Southern"
               className="mb-5 sm:mb-0"
             />
             <p className="text-left font-medium">
-              What do you want to eat? {" "}
+              What are your dietary restrictions? {" "}
               <span className="text-slate-500">
-                (seriously, anything you want)
+                (ex.vegan, nut allergy, soy allergy, gluten allergy, etc.)
               </span>
               .
             </p>
@@ -127,7 +129,7 @@ ${vibe === "Southern"
           />
           <div className="flex mb-5 mt-10  items-center space-x-3">
             <Image src="/2-black.png" width={30} height={30} alt="1 icon" />
-            <p className="text-left font-medium">Select your flavor.</p>
+            <p className="text-left font-medium">Select your goal.</p>
           </div>
           <div className="block">
             <DropDown vibe={vibe} setVibe={(newVibe) => setVibe(newVibe)} />
@@ -139,7 +141,7 @@ ${vibe === "Southern"
               className="bg-black rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-black/80 w-full"
               onClick={(e) => generateBio(e)}
             >
-              Let's cook! &rarr;
+              Let's eat! &rarr;
             </button>
             {/* <button
               id="surpriseMeBtn"
@@ -175,7 +177,7 @@ ${vibe === "Southern"
                   className="sm:text-4xl text-3xl font-bold text-slate-900 mx-auto"
                   ref={bioRef}
                 >
-                  Your Recipe
+                  Your Meal Plan
                 </h2>
               </div>
               <div className="mx-auto flex h-full w-[300px] flex-col justify-center space-y-6 sm:w-[600px]">
@@ -189,8 +191,8 @@ ${vibe === "Southern"
                     onClick={() => {
                       const doc = new jsPDF();
                       doc.text(generatedRecipes.toString(), 10, 10);
-                      doc.save("recipe.pdf");
-                      toast("Recipe downloaded", { icon: "👨‍🍳" });
+                      doc.save("mealplan.pdf");
+                      toast("Meal Plan downloaded", { icon: "👨‍🍳" });
                     }}
                   >
                     <svg className="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
