@@ -3,7 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
-import DropDown, { VibeType } from "../components/MealPlanDropDown";
+import DropDown, { VibeType } from "../components/VeganDropDown";
 import Footer from "../components/Footer";
 import Github from "../components/GitHub";
 import Header from "../components/Header";
@@ -13,7 +13,7 @@ import jsPDF from "jspdf";
 const Home: NextPage = () => {
   const [loading, setLoading] = useState(false);
   const [bio, setBio] = useState("");
-  const [vibe, setVibe] = useState<VibeType>("Maintain Weight");
+  const [vibe, setVibe] = useState<VibeType>("Indian");
   const [generatedRecipes, setgeneratedRecipes] = useState<String>("");
 
   const bioRef = useRef<null | HTMLDivElement>(null);
@@ -26,11 +26,11 @@ const Home: NextPage = () => {
 
   const prompt = `Create a ${vibe} vegan ${bio} recipe with detailed step-by-step instructions by a chef and include the name of the dish. 
   Don't include the words "Recipe" or "Dish", only the name of the dish". ${
-    vibe === "Weight Loss"
+    vibe === "Southern"
       ? "Make sure it is a recipe that can be enjoyed anytime of day."
-      : vibe === "Weight Gain"
+      : vibe === "Spanish"
       ? "Make sure it is a recipe that is easy to cook."
-      : vibe === "Maintain Weight"
+      : vibe === "Indian"
       ? "Make sure it is a recipe that would be prepared at a restaurant"
       : null
   }`;
