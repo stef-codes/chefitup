@@ -131,9 +131,9 @@ ${bio.includes("nut")
             onChange={(e) => setBio(e.target.value)}
             rows={1}
             className="w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black my-5"
-            placeholder={
-              "vegan and nut allergy"
-            }
+            // placeholder={
+            //   // "vegan and nut allergy"
+            // }
           />
           <div className="flex mb-5 mt-10  items-center space-x-3">
             <Image src="/2-black.png" width={30} height={30} alt="1 icon" />
