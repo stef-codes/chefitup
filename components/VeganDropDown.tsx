@@ -10,14 +10,14 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export type VibeType = "Maintain Weight" | "Weight Gain" | "Weight Loss";
+export type VibeType = "Indian" | "Spanish" | "Southern";
 
 interface DropDownProps {
   vibe: VibeType;
   setVibe: (vibe: VibeType) => void;
 }
 
-let vibes: VibeType[] = ["Maintain Weight", "Weight Gain", "Weight Loss"];
+let vibes: VibeType[] = ["Indian", "Spanish", "Southern"];
 
 export default function DropDown({ vibe, setVibe }: DropDownProps) {
   return (
