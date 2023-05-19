@@ -26,7 +26,7 @@ const Home: NextPage = () => {
 
 //   meal plan prompt
 // Give me a meal plan for 5 days with my goal of losing weight. And I'm allergic to nuts. Include two recipes and a grocery list.
-const prompt = `Create a meal plan for 5 days with my goal of ${vibe}. Here are my dietary restrictions ${bio}. Include a grocery list. Don't exceed $70 in grocery costs for the week." 
+const prompt = `Create a meal plan for 5 days with my goal of ${vibe}. Give me meals that are easy and quick to cook. Here are my dietary restrictions: ${bio}. Don't include any food allergens from my dietary restrictions.  If the word "nut" is mentioned in any way, don't include any tree nut allergens, peanuts, coconuts, almonds, Brazil nuts, cashews, hazelnuts, macadamia nuts, pecans, pine nuts (pignolias), pistachio nuts, walnuts, or almonds.If the word "soy" is mentioned in any way, don't include any soy bean allergens, don't include tofu. Include a grocery list for the week at the end. Don't exceed $70 in grocery costs for the week." 
 ${vibe === "Weight Loss"
     ? "Make sure the meals don't exceed 1400 calories per day."
     : vibe === "Weight Gain" // Weight gain
@@ -34,7 +34,15 @@ ${vibe === "Weight Loss"
     : vibe === "Maintain Weight" // Maintain weight
     ? "Make sure the meals are around exceed 2000 calories per day."
     : null
+},
+
+${bio.includes("nut")
+    ? "Make sure the meals don't include any tree nut products"
+    : bio.includes("soy")
+    ? "Make sure the meals don't include any soy bean products or tofu"
+    : ""
 }`;
+
 // prompt v2 with recipes and grocery list
 //const prompt = `Create a meal plan for 5 days with my goal of ${vibe}. Here are my dietary restrictions ${bio}. Include two recipes and a grocery list." 
 
@@ -113,7 +121,7 @@ ${vibe === "Weight Loss"
             <p className="text-left font-medium">
               What are your dietary restrictions? {" "}
               <span className="text-slate-500">
-                (ex.vegan, nut allergy, soy allergy, gluten allergy, etc.)
+                (ex.vegan, nut allergy, soy allergy, gluten allergy, or a combination)
               </span>
               .
             </p>
@@ -124,7 +132,7 @@ ${vibe === "Weight Loss"
             rows={1}
             className="w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black my-5"
             placeholder={
-              "nut allergy"
+              "vegan and nut allergy"
             }
           />
           <div className="flex mb-5 mt-10  items-center space-x-3">
