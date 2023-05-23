@@ -26,7 +26,8 @@ const Home: NextPage = () => {
 
 //   meal plan prompt
 // Give me a meal plan for 5 days with my goal of losing weight. And I'm allergic to nuts. Include two recipes and a grocery list.
-const prompt = `Create a meal plan for 5 days with my goal of ${vibe}. Give me meals that are easy and quick to cook. Here are my dietary restrictions: ${bio}. Don't include any food allergens from my dietary restrictions.  If the word "nut" is mentioned in any way, don't include any tree nut allergens, peanuts, coconuts, almonds, Brazil nuts, cashews, hazelnuts, macadamia nuts, pecans, pine nuts (pignolias), pistachio nuts, walnuts, or almonds.If the word "soy" is mentioned in any way, don't include any soy bean allergens, don't include tofu. Include a grocery list for the week at the end. Don't exceed $70 in grocery costs for the week." 
+const prompt = `Create a vegan meal plan for 5 days with my goal of ${vibe}. Give me meals that are easy and quick to cook. 
+Here is my budget: ${bio} dollars. Include a grocery list for the week at the end. Don't exceed my budget in grocery costs for the week." 
 ${vibe === "Weight Loss"
     ? "Make sure the meals don't exceed 1400 calories per day."
     : vibe === "Weight Gain" // Weight gain
@@ -34,13 +35,6 @@ ${vibe === "Weight Loss"
     : vibe === "Maintain Weight" // Maintain weight
     ? "Make sure the meals are around exceed 2000 calories per day."
     : null
-},
-
-${bio.includes("nut")
-    ? "Make sure the meals don't include any tree nut products"
-    : bio.includes("soy")
-    ? "Make sure the meals don't include any soy bean products or tofu"
-    : ""
 }`;
 
 // prompt v2 with recipes and grocery list
@@ -119,11 +113,11 @@ ${bio.includes("nut")
               className="mb-5 sm:mb-0"
             />
             <p className="text-left font-medium">
-              What are your dietary restrictions? {" "}
-              <span className="text-slate-500">
-                (ex.vegan, nut allergy, soy allergy, gluten allergy, or a combination)
-              </span>
-              .
+              What's your weekly budget? {" "}
+              {/* <span className="text-slate-500">
+                (ex. 50, , 100, gluten allergy, or a combination)
+              </span> */}
+              
             </p>
           </div>
           <textarea
@@ -138,7 +132,10 @@ ${bio.includes("nut")
 
           <div className="flex mb-5 mt-10  items-center space-x-3">
             <Image src="/2-black.png" width={30} height={30} alt="1 icon" />
-            <p className="text-left font-medium">Select your goal.</p>
+            <p className="text-left font-medium">Select your goal</p>
+              {/* <span className="text-slate-500">
+                (ex. we, , 100, gluten allergy, or a combination)
+              </span>  */}
           </div>
           <div className="block">
             <DropDown vibe={vibe} setVibe={(newVibe) => setVibe(newVibe)} />
