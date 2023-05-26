@@ -53,10 +53,10 @@ const Home: NextPage = () => {
       throw new Error(`Request failed with status code ${response.status}: ${response.statusText}`);
     }    
 
-    const data = await response.json(); // Parse the response as JSON
-    const generatedRecipesString = JSON.stringify(data); // Convert the data to a JSON string
+    // const data = await response.json(); // Parse the response as JSON
+    // const generatedRecipesString = JSON.stringify(data); // Convert the data to a JSON string
   
-    setgeneratedRecipes(generatedRecipesString);
+    // setgeneratedRecipes(generatedRecipesString);
     
     // This data is a ReadableStream
     const data = response.body;
