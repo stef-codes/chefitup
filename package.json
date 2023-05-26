@@ -12,6 +12,7 @@
     "@tailwindcss/forms": "^0.5.3",
     "@vercel/analytics": "^0.1.8",
     "eventsource-parser": "^0.0.5",
+    "flywheel-leaderboard": "^0.0.3",
     "jspdf": "^2.5.1",
     "next": "latest",
     "react": "18.2.0",
