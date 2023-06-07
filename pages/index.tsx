@@ -28,12 +28,12 @@ const Home: NextPage = () => {
     }
   };
 
-  const prompt = `Generate 2 ${vibe} kind messages to a loved one clearly labeled "1." and "2.". ${
+  const prompt = `Generate 2 ${vibe} kind messages to a loved one. Do not include emojis. clearly labeled "1." and "2.". ${
     vibe === "Funny"
       ? "Make sure there is a joke in there and it's a little ridiculous."
       : null
   }
-      Make sure each generated message is less than 160 characters, has sentences that are found in hallmark cards, and base them on this context: ${bio}${
+      Make sure each generated message is less than 160 characters and works for any time of day, has sentences that are found in hallmark cards, and base them on this context: ${bio}${
     bio.slice(-1) === "." ? "" : "."
   }`;
 
