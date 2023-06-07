@@ -33,7 +33,7 @@ const Home: NextPage = () => {
       ? "Make sure there is a joke in there and it's a little ridiculous."
       : null
   }
-      Make sure each generated message is less than 160 characters and works for any time of day, has sentences that are found in hallmark cards, and base them on this context: ${bio}${
+      Make sure each generated message is less than 300 characters and works for any time of day, has sentences that are found in hallmark cards, and base them on this context: ${bio}${
     bio.slice(-1) === "." ? "" : "."
   }`;
 
@@ -91,8 +91,9 @@ const Home: NextPage = () => {
   return (
     <div className="flex max-w-5xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
       <Head>
-        <title>Twitter Bio Generator</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>QRLove</title>
+        {/* get a favicon */}
+        {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
 
       <Header />
@@ -140,7 +141,7 @@ const Home: NextPage = () => {
               className="bg-black rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-black/80 w-full"
               onClick={(e) => generateBio(e)}
             >
-              Generate your bio &rarr;
+              Generate your love note &rarr;
             </button>
           )}
           {loading && (
@@ -166,7 +167,7 @@ const Home: NextPage = () => {
                   className="sm:text-4xl text-3xl font-bold text-slate-900 mx-auto"
                   ref={bioRef}
                 >
-                  Your generated bios
+                  Your love notes
                 </h2>
               </div>
               <div className="space-y-8 flex flex-col items-center justify-center max-w-xl mx-auto">
