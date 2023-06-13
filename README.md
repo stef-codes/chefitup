@@ -1,14 +1,13 @@
-# [chefitup.app.com](https://www.chefitup.app.com/)
+# [chefitup.app](https://www.chefitup.app)
 
-This project generates Twitter bios for you using AI.
+This project generates Vegan Recipes for you using AI.
 
-[![Twitter Bio Generator](./public/screenshot.png)](https://www.chefitup.app.com)
+[Vegan Recipe Generator](https://www.chefitup.app.com)
 
 ## How it works
 
 This project uses the [ChatGPT API](https://openai.com/api/) and [Vercel Edge functions](https://vercel.com/features/edge-functions) with streaming. It constructs a prompt based on the form and user input, sends it to the chatGPT API via a Vercel Edge function, then streams the response back to the application.
 
-If you'd like to see how I built this, check out the [video](https://youtu.be/JcE-1xzQTE0) or [blog post](https://vercel.com/blog/gpt-3-app-next-js-vercel-edge-functions).
 
 ## Running Locally
 
