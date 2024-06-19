@@ -1,14 +1,14 @@
-import { Analytics } from "@vercel/analytics/react";
 import type { AppProps } from "next/app";
 import "../styles/globals.css";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/react";
+
+const googleAnalyticsId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Component {...pageProps} />
-      <Analytics />
-      <GoogleAnalytics trackPageViews />
+      {googleAnalyticsId && <Analytics />}
     </>
   );
 }
